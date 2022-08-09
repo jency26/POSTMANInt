@@ -43,7 +43,7 @@
 					}
 				}
 			],
-			"_postman_id": "a89f4d10-2db6-48af-ac3d-13301199a362",
+			"id": "a89f4d10-2db6-48af-ac3d-13301199a362",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -129,7 +129,7 @@
 					}
 				}
 			],
-			"_postman_id": "eca8f76c-1523-4e82-8889-900265e84adf",
+			"id": "eca8f76c-1523-4e82-8889-900265e84adf",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -161,7 +161,7 @@
 					}
 				}
 			],
-			"_postman_id": "238e766b-2a58-4f0c-9a55-4043bcd25bf8",
+			"id": "238e766b-2a58-4f0c-9a55-4043bcd25bf8",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -190,8 +190,7 @@
 						{
 							"id": "a450c8c1-c5b4-4ecd-b5ce-4ebe79ab6e58",
 							"key": "id",
-							"value": "{{Book_ID}}",
-							"type": "string"
+							"value": "{{Book_ID}}"
 						}
 					]
 				}
@@ -249,7 +248,7 @@
 					}
 				}
 			],
-			"_postman_id": "b452dd3b-bcf2-457d-8d6e-4c593991b96e",
+			"id": "b452dd3b-bcf2-457d-8d6e-4c593991b96e",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -286,6 +285,51 @@
 				"description": "Returns all books in the library database. \n\nOptional filters can be passed as query parameters."
 			},
 			"response": []
+		},
+		{
+			"name": "Check the API Key",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5096266f-c7b5-46d4-90a8-a360118a1efd",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "bf6b3c2c-6422-436a-a320-d9f9ee80790a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.getpostman.com/collections/12559118-c097f106-044b-4b9c-9c27-0bd4658f5804?apikey=PMAK-62f1fd2a56d9256ffcb56f73-3c12b6b28917f1471d973d773179de9e47",
+					"protocol": "https",
+					"host": [
+						"api",
+						"getpostman",
+						"com"
+					],
+					"path": [
+						"collections",
+						"12559118-c097f106-044b-4b9c-9c27-0bd4658f5804"
+					],
+					"query": [
+						{
+							"key": "apikey",
+							"value": "PMAK-62f1fd2a56d9256ffcb56f73-3c12b6b28917f1471d973d773179de9e47"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -312,22 +356,20 @@
 	],
 	"variable": [
 		{
-			"id": "c158d220-59af-4fa4-adcb-3bdaca91e200",
+			"id": "d16ad0de-f2d6-44c9-8ce4-4c59bfbab6c8",
 			"key": "Year",
-			"value": 1177,
-			"type": "number"
+			"value": 1177
 		},
 		{
-			"id": "861e0e01-5419-4666-a5f7-a901430ee3e3",
+			"id": "97f49147-82c7-4ddc-b119-196108fd62af",
 			"key": "baseUrl",
 			"value": "https://postman-library-api.glitch.me",
 			"type": "string"
 		},
 		{
-			"id": "6dbfbbad-e6a9-4086-98b6-25f5172dd208",
+			"id": "5f40a01b-50f1-46d0-a60c-94478aed175e",
 			"key": "Book_ID",
-			"value": "OPx1eULhStSxJe3",
-			"type": "string"
+			"value": "OPx1eULhStSxJe3"
 		}
 	]
 }
