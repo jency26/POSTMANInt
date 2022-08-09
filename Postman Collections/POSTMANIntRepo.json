@@ -1,0 +1,333 @@
+{
+	"info": {
+		"_postman_id": "c097f106-044b-4b9c-9c27-0bd4658f5804",
+		"name": "Scenario_Check",
+		"description": "**Scenario:**\n\n*I have a Library System, in which I want to:*\n\n1.  *Add a book*\n2.  *Check if book added*\n3.  *Update the same book with new genre*\n4.  *Check if update is performed*",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add a book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c3f4e9d9-a349-4d61-acf2-4683ecbc1ba3",
+						"exec": [
+							"pm.test(\"Message OK check\", function () \r",
+							"{\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"OK\");\r",
+							"});\r",
+							"\r",
+							"//assert on creating a new book\r",
+							"pm.test(\"Book created\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"\r",
+							"postman.setNextRequest(\"Check book added\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1c288246-a722-420d-96d3-e952dea6eb36",
+						"exec": [
+							"pm.collectionVariables.set(\"Year\",(Math.round(Math.random() * (2000 - 1000) + 1000)));\r",
+							"console.log(pm.collectionVariables.get(\"Year\"));\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "a89f4d10-2db6-48af-ac3d-13301199a362",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Dune\",\n    \"author\": \"Roger Zelazny\",\n    \"genre\": \"fiction\",\n    \"yearPublished\": {{Year}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://postman-library-api.glitch.me/books"
+			},
+			"response": []
+		},
+		{
+			"name": "Check book added",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a667e79f-bda0-4ef4-a6d5-99976e9e39d4",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "58c40556-fd18-4cd7-92b2-b647282ff8ad",
+						"exec": [
+							"var resp = JSON.parse(responseBody);\r",
+							"console.log(resp);\r",
+							"\r",
+							"//assert response status code\r",
+							"pm.test(\"Response is OK\", function () \r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//assert - For checking status being BAD REQUEST\r",
+							"pm.test(\"Bad Request Check\", function () {\r",
+							"     pm.response.to.not.be.badRequest;\r",
+							"});\r",
+							"\r",
+							"// assert on response and response type\r",
+							"pm.test(\"Response should be okay to process\", function () { \r",
+							"    pm.response.to.not.be.error; \r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"// assert on Response Header\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"     pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"// //Array to hold the Book ID\r",
+							"// BookIDArr = [];\r",
+							"// //pm.environment.set(\"BookIDArr\", BookIDArr);\r",
+							"// pm.collectionVariables.set(\"BookIDArr\", BookIDArr);\r",
+							"console.log(pm.collectionVariables.get(\"Year\"));\r",
+							"var publish_year = pm.collectionVariables.get(\"Year\");\r",
+							"for (var i=0; i<resp.length; i++)\r",
+							"{\r",
+							"    // BookIDArr.push(`${resp[i].id}`);\r",
+							"    // console.log(BookIDArr);\r",
+							"    if (((resp[i].author) == (\"Roger Zelazny\")) && ((resp[i].yearPublished) == publish_year))\r",
+							"    {\r",
+							"    pm.collectionVariables.set(\"Book_ID\", (resp[i].id));\r",
+							"    pm.test(\"Correct Author book is added\", function () {\r",
+							"        pm.expect(resp[i].author).to.eql(\"Roger Zelazny\");\r",
+							"    });\r",
+							"    }\r",
+							"}\r",
+							"postman.setNextRequest(\"Update the same book\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "eca8f76c-1523-4e82-8889-900265e84adf",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{baseUrl}}/books",
+				"description": "Gets a single book by id"
+			},
+			"response": []
+		},
+		{
+			"name": "Update the same book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1d5e565f-ac36-4e07-866e-032862c60f52",
+						"exec": [
+							"\r",
+							"\r",
+							"pm.test(\"Book is updated\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"postman.setNextRequest(\"Check Update performed\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "238e766b-2a58-4f0c-9a55-4043bcd25bf8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"checkedOut\": true,\n    \"genre\": \"humor\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/books/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"books",
+						":id"
+					],
+					"variable": [
+						{
+							"id": "a450c8c1-c5b4-4ecd-b5ce-4ebe79ab6e58",
+							"key": "id",
+							"value": "{{Book_ID}}",
+							"type": "string"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Update performed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "54e311da-a0a3-433d-9a25-db369b251c3c",
+						"exec": [
+							"//assert response status code\r",
+							"pm.test(\"Response is OK\", function () \r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//assert - For checking status being BAD REQUEST\r",
+							"pm.test(\"Bad Request Check\", function () {\r",
+							"     pm.response.to.not.be.badRequest;\r",
+							"});\r",
+							"\r",
+							"// assert on response and response type\r",
+							"pm.test(\"Response should be okay to process\", function () { \r",
+							"    pm.response.to.not.be.error; \r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"// assert on Response Header\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"     pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"var resp = JSON.parse(responseBody);\r",
+							"console.log(resp);\r",
+							" pm.test(\"Update is completed\", function () {\r",
+							"        pm.expect(resp[0].checkedOut).to.eql(true);\r",
+							"        pm.expect(resp[0].genre).to.eql(\"humor\");\r",
+							"    });\r",
+							"postman.setNextRequest(null);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "34537696-5666-46de-bc18-4bdcb58f8ec0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "b452dd3b-bcf2-457d-8d6e-4c593991b96e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/books?search=Roger Zelazny&checkedOut=true",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"books"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "Roger Zelazny",
+							"description": "a search string to be matched against author/title (example: borges). Case insensitive, partial match OK."
+						},
+						{
+							"key": "checkedOut",
+							"value": "true",
+							"description": "true/false"
+						},
+						{
+							"key": "genre",
+							"value": "fiction",
+							"description": "filter by genre (case-insensitive, exact match)",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Returns all books in the library database. \n\nOptional filters can be passed as query parameters."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "255a9388-c98a-4c6a-b4b7-52d6f6b38f7f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9462db04-80b9-4c88-a956-5da0ff634009",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "c158d220-59af-4fa4-adcb-3bdaca91e200",
+			"key": "Year",
+			"value": 1177,
+			"type": "number"
+		},
+		{
+			"id": "861e0e01-5419-4666-a5f7-a901430ee3e3",
+			"key": "baseUrl",
+			"value": "https://postman-library-api.glitch.me",
+			"type": "string"
+		},
+		{
+			"id": "6dbfbbad-e6a9-4086-98b6-25f5172dd208",
+			"key": "Book_ID",
+			"value": "OPx1eULhStSxJe3",
+			"type": "string"
+		}
+	]
+}
