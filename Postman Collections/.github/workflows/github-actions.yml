@@ -25,4 +25,4 @@ jobs:
 
         # Run the POSTMAN collection
       - name: Run API Tests
-        run: newman run https://api.getpostman.com/collections/12559118-c097f106-044b-4b9c-9c27-0bd4658f5804?apikey=PMAK-60fe93decfe50b0068894f74-XXXX
+        run: newman run "POSTMANIntRepo.json"
