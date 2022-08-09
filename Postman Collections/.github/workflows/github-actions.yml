@@ -11,6 +11,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        
+     # INstall Node on the runner
+      - name: Install Node
+        uses: actions/setup-node@v2
+        with: 
+          node-version: '16.x'
+    
+    # Install the newman command line utility and also install the html extra reporter
+      - name: Install newman
+        run: |
+          npm install -g newman
 
+        # Run the POSTMAN collection
       - name: Run API Tests
-        run: newman run "Scenario_Check.postman_collection.json"
+        run: newman run https://api.getpostman.com/collections/12559118-c097f106-044b-4b9c-9c27-0bd4658f5804?apikey=PMAK-60fe93decfe50b0068894f74-XXXX
