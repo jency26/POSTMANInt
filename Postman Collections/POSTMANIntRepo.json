@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "c097f106-044b-4b9c-9c27-0bd4658f5804",
-		"name": "Scenario_Check",
+		"name": "Meetup - Chaining Request",
 		"description": "**Scenario:**\n\n*I have a Library System, in which I want to:*\n\n1.  *Add a book*\n2.  *Check if book added*\n3.  *Update the same book with new genre*\n4.  *Check if update is performed*",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -311,18 +311,18 @@
 	],
 	"variable": [
 		{
-			"id": "b03725d7-4b1f-4576-804b-115d4389750e",
+			"id": "95643f82-7e2a-4043-b63d-57451f80b393",
 			"key": "Year",
 			"value": 1177
 		},
 		{
-			"id": "1ce80bb2-4661-404e-9837-4a1fb1be8a11",
+			"id": "5f818231-0391-46fc-b087-b2e35e754eb3",
 			"key": "baseUrl",
 			"value": "https://postman-library-api.glitch.me",
 			"type": "string"
 		},
 		{
-			"id": "69fbd4a0-e8c6-402c-aaa9-25ff10c67ce4",
+			"id": "ea0f853d-bc5e-426b-897a-04cc2a4746ee",
 			"key": "Book_ID",
 			"value": "OPx1eULhStSxJe3"
 		}
