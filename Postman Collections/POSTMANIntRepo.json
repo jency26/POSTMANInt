@@ -105,10 +105,6 @@
 							"     pm.response.to.have.header(\"Content-Type\");\r",
 							"});\r",
 							"\r",
-							"// //Array to hold the Book ID\r",
-							"// BookIDArr = [];\r",
-							"// //pm.environment.set(\"BookIDArr\", BookIDArr);\r",
-							"// pm.collectionVariables.set(\"BookIDArr\", BookIDArr);\r",
 							"console.log(pm.collectionVariables.get(\"Year\"));\r",
 							"var publish_year = pm.collectionVariables.get(\"Year\");\r",
 							"for (var i=0; i<resp.length; i++)\r",
@@ -311,18 +307,18 @@
 	],
 	"variable": [
 		{
-			"id": "6320501b-9e32-4521-ac3a-1bca6ad1637f",
+			"id": "adba9faf-f3ea-43d6-94e3-c3a0baf04569",
 			"key": "Year",
 			"value": 1177
 		},
 		{
-			"id": "cdb8c701-8f42-48ea-9337-236a169cd02f",
+			"id": "8bbde950-7875-4c5c-8aa2-f9cd6d9afcb4",
 			"key": "baseUrl",
 			"value": "https://postman-library-api.glitch.me",
 			"type": "string"
 		},
 		{
-			"id": "7e95c475-7965-4b58-ba4d-355921a4388e",
+			"id": "6ca70774-b825-46ab-9bde-f78e9eb68b22",
 			"key": "Book_ID",
 			"value": "OPx1eULhStSxJe3"
 		}
