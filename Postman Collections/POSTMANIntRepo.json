@@ -63,6 +63,62 @@
 			"response": []
 		},
 		{
+			"name": "Update the same book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1d5e565f-ac36-4e07-866e-032862c60f52",
+						"exec": [
+							"\r",
+							"\r",
+							"pm.test(\"Book is updated\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"postman.setNextRequest(\"Check Update performed\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "238e766b-2a58-4f0c-9a55-4043bcd25bf8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"checkedOut\": true,\n    \"genre\": \"humor\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/books/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"books",
+						":id"
+					],
+					"variable": [
+						{
+							"id": "a450c8c1-c5b4-4ecd-b5ce-4ebe79ab6e58",
+							"key": "id",
+							"value": "{{Book_ID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Check book added",
 			"event": [
 				{
@@ -133,62 +189,6 @@
 				"header": [],
 				"url": "{{baseUrl}}/books",
 				"description": "Gets a single book by id"
-			},
-			"response": []
-		},
-		{
-			"name": "Update the same book",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "1d5e565f-ac36-4e07-866e-032862c60f52",
-						"exec": [
-							"\r",
-							"\r",
-							"pm.test(\"Book is updated\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"postman.setNextRequest(\"Check Update performed\");"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"id": "238e766b-2a58-4f0c-9a55-4043bcd25bf8",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "PATCH",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"checkedOut\": true,\n    \"genre\": \"humor\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/books/:id",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"books",
-						":id"
-					],
-					"variable": [
-						{
-							"id": "a450c8c1-c5b4-4ecd-b5ce-4ebe79ab6e58",
-							"key": "id",
-							"value": "{{Book_ID}}"
-						}
-					]
-				}
 			},
 			"response": []
 		},
@@ -306,18 +306,18 @@
 	],
 	"variable": [
 		{
-			"id": "8802b4b1-27f7-442b-b16a-dd9d4d2cf37a",
+			"id": "a4874942-1e61-4a05-a2d0-2365ba7bb071",
 			"key": "Year",
 			"value": 1177
 		},
 		{
-			"id": "ecac2dcf-498d-4729-ae61-2da05b260895",
+			"id": "db8df6f1-15a4-405b-913e-e4f4cba6b229",
 			"key": "baseUrl",
 			"value": "https://postman-library-api.glitch.me",
 			"type": "string"
 		},
 		{
-			"id": "e497da43-00b4-4404-be81-f2f3c5672675",
+			"id": "2d92e304-2873-47e1-9134-75c568ac2f52",
 			"key": "Book_ID",
 			"value": "OPx1eULhStSxJe3"
 		}
