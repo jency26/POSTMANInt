@@ -36,8 +36,7 @@
 						"id": "1c288246-a722-420d-96d3-e952dea6eb36",
 						"exec": [
 							"pm.collectionVariables.set(\"Year\",(Math.round(Math.random() * (2000 - 1000) + 1000)));\r",
-							"console.log(pm.collectionVariables.get(\"Year\"));\r",
-							""
+							"console.log(pm.collectionVariables.get(\"Year\"));"
 						],
 						"type": "text/javascript"
 					}
@@ -307,18 +306,18 @@
 	],
 	"variable": [
 		{
-			"id": "adba9faf-f3ea-43d6-94e3-c3a0baf04569",
+			"id": "f352ebcf-eb0c-4a9b-a520-9c76d0dd4b24",
 			"key": "Year",
 			"value": 1177
 		},
 		{
-			"id": "8bbde950-7875-4c5c-8aa2-f9cd6d9afcb4",
+			"id": "dba1d818-d213-4209-b0ef-3633c6a3e12d",
 			"key": "baseUrl",
 			"value": "https://postman-library-api.glitch.me",
 			"type": "string"
 		},
 		{
-			"id": "6ca70774-b825-46ab-9bde-f78e9eb68b22",
+			"id": "5668c152-82b4-4b69-bcab-c1db15f665ca",
 			"key": "Book_ID",
 			"value": "OPx1eULhStSxJe3"
 		}
