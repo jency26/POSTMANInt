@@ -164,8 +164,6 @@
 							"var publish_year = pm.collectionVariables.get(\"Year\");\r",
 							"for (var i=0; i<resp.length; i++)\r",
 							"{\r",
-							"    // BookIDArr.push(`${resp[i].id}`);\r",
-							"    // console.log(BookIDArr);\r",
 							"    if (((resp[i].author) == (\"Roger Zelazny\")) && ((resp[i].yearPublished) == publish_year))\r",
 							"    {\r",
 							"    pm.collectionVariables.set(\"Book_ID\", (resp[i].id));\r",
@@ -306,18 +304,18 @@
 	],
 	"variable": [
 		{
-			"id": "a4874942-1e61-4a05-a2d0-2365ba7bb071",
+			"id": "238418e0-4fd0-47a0-9c5f-887f6b3a74c3",
 			"key": "Year",
 			"value": 1177
 		},
 		{
-			"id": "db8df6f1-15a4-405b-913e-e4f4cba6b229",
+			"id": "1e677dda-ebbf-4a36-9f51-e40d8b9ec56d",
 			"key": "baseUrl",
 			"value": "https://postman-library-api.glitch.me",
 			"type": "string"
 		},
 		{
-			"id": "2d92e304-2873-47e1-9134-75c568ac2f52",
+			"id": "d24b8b28-1675-48b6-bc6d-0e4eaa52abc7",
 			"key": "Book_ID",
 			"value": "OPx1eULhStSxJe3"
 		}
